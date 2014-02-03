@@ -14,7 +14,7 @@ var RadialProgressBar = new Class({
         animationSpeed: 1000,
         showText: true,
         animateText: false,
-		autoStart: true
+        autoStart: true
     },
 
     initialize: function (element, options) {
@@ -23,7 +23,7 @@ var RadialProgressBar = new Class({
         this.options.elementSize = parseInt(this.options.elementSize, 10);
         this.options.borderWidth = parseInt(this.options.borderWidth, 10);
 
-		this.element = element;
+        this.element = element;
 
         this.prepareElement(element);
     },
@@ -68,10 +68,10 @@ var RadialProgressBar = new Class({
         } else if (this.options.autoStart) {
             this.setAnimation(el);
         } else {
-			el.setStyles({
-				'background-image': this.getGradientLess(90)
-			});
-		}
+            el.setStyles({
+                'background-image': this.getGradientLess(90)
+            });
+        }
     },
 
     setProgress: function (el) {
@@ -161,7 +161,7 @@ var RadialProgressBar = new Class({
         return 'linear-gradient(' + deg + 'deg, ' + bc + ' 50%, transparent 50%, transparent), linear-gradient(270deg, ' + bc + ' 50%, ' + bg + ' 50%, ' + bg + ')';
     },
 
-	start: function () {
-		this.setAnimation(this.element);
-	}
+    start: function () {
+        this.setAnimation(this.element);
+    }
 });
