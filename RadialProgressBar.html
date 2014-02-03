@@ -36,6 +36,19 @@
 				animateText: true
 			});
 		});
+
+		var rpb = new RadialProgressBar($('triggered'), {
+			overlayColor: '#333',
+			borderColor: '#fff',
+			fontColor: '#fff',
+			animate: true,
+			animateText: true,
+			autoStart: false
+		});
+
+		$('startAnimation').addEvent('click', function (e) {
+			rpb.start();
+		});
 	});
 	</script>
 
@@ -127,6 +140,24 @@ new RadialProgressBar(el, {
 		<div class="radial-progress-type-3" data-progress="42%"></div>
 		<div class="radial-progress-type-3" data-progress="69%"></div>
 		<div class="radial-progress-type-3" data-progress="83%"></div>
+	</div>
+	<div class="section type-4">
+		<pre>
+var rpb = new RadialProgressBar($('triggered'), {
+	overlayColor: '#333',
+	borderColor: '#fff',
+	fontColor: '#fff',
+	animate: true,
+	animateText: true,
+	autoStart: false
+});
+
+$('startAnimation').addEvent('click', function (e) {
+	rpb.start();
+});
+		</pre>
+		<button id="startAnimation">Start animation</button>
+		<div id="triggered" data-progress="55%"></div>
 	</div>
 </body>
 </html>

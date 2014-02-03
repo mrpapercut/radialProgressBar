@@ -13,7 +13,8 @@ var RadialProgressBar = new Class({
         animate: false,
         animationSpeed: 1000,
         showText: true,
-        animateText: false
+        animateText: false,
+		autoStart: true
     },
 
     initialize: function (element, options) {
@@ -21,6 +22,8 @@ var RadialProgressBar = new Class({
 
         this.options.elementSize = parseInt(this.options.elementSize, 10);
         this.options.borderWidth = parseInt(this.options.borderWidth, 10);
+
+		this.element = element;
 
         this.prepareElement(element);
     },
@@ -62,16 +65,18 @@ var RadialProgressBar = new Class({
 
         if (!this.options.animate) {
             this.setProgress(el);
-        } else {
+        } else if (this.options.autoStart) {
             this.setAnimation(el);
-        }
+        } else {
+			el.setStyles({
+				'background-image': this.getGradientLess(90)
+			});
+		}
     },
 
     setProgress: function (el) {
         var progress = parseInt(el.get('data-progress'), 10),
-            deg = progress <= 50 ? parseInt(360 * (progress / 100) + 90, 10) : parseInt(360 * (progress / 100) - 270, 10),
-            bg = this.options.backgroundColor,
-            bc = this.options.borderColor;
+            deg = progress <= 50 ? parseInt(360 * (progress / 100) + 90, 10) : parseInt(360 * (progress / 100) - 270, 10);
 
         if (progress <= 50) {
             el.setStyles({
@@ -89,10 +94,8 @@ var RadialProgressBar = new Class({
             deg = progress <= 50 ? parseInt(360 * (progress / 100) + 90, 10) : parseInt(360 * (progress / 100) - 270, 10),
             steps = 360 * (progress / 100),
             speedPerStep = this.options.animationSpeed / steps,
-            interval,
-            bg = this.options.backgroundColor,
-            bc = this.options.borderColor,
             animateText = this.options.animateText,
+            interval,
             i = 0,
             j,
             self = this;
@@ -156,5 +159,9 @@ var RadialProgressBar = new Class({
             bc = this.options.borderColor;
 
         return 'linear-gradient(' + deg + 'deg, ' + bc + ' 50%, transparent 50%, transparent), linear-gradient(270deg, ' + bc + ' 50%, ' + bg + ' 50%, ' + bg + ')';
-    }
+    },
+
+	start: function () {
+		this.setAnimation(this.element);
+	}
 });
