@@ -75,11 +75,11 @@ var RadialProgressBar = new Class({
 
 		if (progress <= 50) {
 			el.setStyles({
-				'background-image': 'linear-gradient(90deg, ' + bg + ' 50%, transparent 50%, transparent), linear-gradient(' + deg + 'deg, ' + bc + ' 50%, ' + bg + ' 50%, ' + bg + ')'
+				'background-image': this.getGradientLess(deg)
 			});
 		} else {
 			el.setStyles({
-				'background-image': 'linear-gradient(' + deg + 'deg, ' + bc + ' 50%, transparent 50%, transparent), linear-gradient(270deg, ' + bc + ' 50%, ' + bg + ' 50%, ' + bg + ')'
+				'background-image': this.getGradientMore(deg)
 			});
 		}
 	},
@@ -94,14 +94,15 @@ var RadialProgressBar = new Class({
 			bc = this.options.borderColor,
 			animateText = this.options.animateText,
 			i = 0,
-			j;
+			j,
+			self = this;
 
 		if (progress <= 50) {
 			interval = window.setInterval(function () {
 				j = i + 90;
 
 				el.setStyles({
-					'background-image': 'linear-gradient(90deg, ' + bg + ' 50%, transparent 50%, transparent), linear-gradient(' + j + 'deg, ' + bc + ' 50%, ' + bg + ' 50%, ' + bg + ')'
+					'background-image': self.getGradientLess(j)
 				});
 
 				if (animateText) {
@@ -120,13 +121,13 @@ var RadialProgressBar = new Class({
 					j = i + 90;
 
 					el.setStyles({
-						'background-image': 'linear-gradient(90deg, ' + bg + ' 50%, transparent 50%, transparent), linear-gradient(' + j + 'deg, ' + bc + ' 50%, ' + bg + ' 50%, ' + bg + ')'
+						'background-image': self.getGradientLess(j)
 					});
 				} else {
 					j = i - 270;
 
 					el.setStyles({
-						'background-image': 'linear-gradient(' + j + 'deg, ' + bc + ' 50%, transparent 50%, transparent), linear-gradient(270deg, ' + bc + ' 50%, ' + bg + ' 50%, ' + bg + ')'
+						'background-image': self.getGradientMore(j)
 					});
 				}
 
@@ -141,5 +142,19 @@ var RadialProgressBar = new Class({
 				i++;
 			}, speedPerStep);
 		}
+	},
+
+	getGradientLess: function (deg) {
+		var bg = this.options.backgroundColor,
+			bc = this.options.borderColor;
+
+		return 'linear-gradient(90deg, ' + bg + ' 50%, transparent 50%, transparent), linear-gradient(' + deg + 'deg, ' + bc + ' 50%, ' + bg + ' 50%, ' + bg + ')';
+	},
+
+	getGradientMore: function (deg) {
+		var bg = this.options.backgroundColor,
+			bc = this.options.borderColor;
+
+		return 'linear-gradient(' + deg + 'deg, ' + bc + ' 50%, transparent 50%, transparent), linear-gradient(270deg, ' + bc + ' 50%, ' + bg + ' 50%, ' + bg + ')';
 	}
 });
