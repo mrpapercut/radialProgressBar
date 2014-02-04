@@ -80,6 +80,6 @@ $('button').addEvent('click', function () {
 Links
 -----
 
-[Website](http://www.mrpapercut.com)
-[Twitter](http://twitter.com/Mr_Papercut)
-[Github](http://github.com/mrpapercut)
+* [Website](http://www.mrpapercut.com)
+* [Twitter](http://twitter.com/Mr_Papercut)
+* [Github](http://github.com/mrpapercut/radialProgressBar)
