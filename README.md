@@ -22,6 +22,7 @@ Options
 The following options are available, with their default values shown
 ```javascript
 new RadialProgressBar(element, {
+
     // Sets the background color. Must match the background of the page for optimal effect
     backgroundColor: '#222',
 
@@ -37,8 +38,8 @@ new RadialProgressBar(element, {
     // Total width and height of the resulting element, in pixels
     elementSize: 100,
 
-    // Width of the border, the progress part of the result, in pixels.
-    // Note: this cannot be more than half of the vlaue of elementSize
+    // Width of the border, the progress part of the result, in pixels
+    // Note: this cannot be more than half of the value of elementSize
     borderWidth: 20,
 
     // Turn animated progress on/off
