@@ -62,7 +62,7 @@ new RadialProgressBar(element, {
 AutoStart
 ---------
 
-With the option 'autoStart' set to false, the animation will not begin before you trigger it. The functions 'start()' becomes available to trigger it on any event.
+With the option 'autoStart' set to false, the animation will not begin before you trigger it. The function 'start()' becomes available to trigger it on any event.
 You need to assign the initialization of the class to a variable, and fire the .start() function on this.
 
 Example:
