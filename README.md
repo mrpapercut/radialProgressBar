@@ -3,6 +3,13 @@ Radial Progress Bar
 
 Mootools plugin to create fancy radial progress bars
 
+![Radial progress bar](http://www.mrpapercut.com/cms/uploads/posts/radial-progress.png)
+
+Example
+-------
+
+See http://www.mrpapercut.com/files/RadialProgressBar.html for examples
+
 Initialization
 --------------
 
