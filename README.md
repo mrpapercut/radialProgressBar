@@ -6,7 +6,13 @@ Mootools plugin to create fancy radial progress bars
 Initialization
 --------------
 
+```html
+<div id="element" data-progress="83%"></div>
+````
+
 ```javascript
+var element = $('element');
+
 new RadialProgressBar(element[, options]);
 ```
 
