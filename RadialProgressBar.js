@@ -18,14 +18,24 @@ var RadialProgressBar = new Class({
     },
 
     initialize: function (element, options) {
+		var self = this;
+
         this.setOptions(options);
 
-        this.options.elementSize = parseInt(this.options.elementSize, 10);
+		this.options.elementSize = parseInt(this.options.elementSize, 10);
         this.options.borderWidth = parseInt(this.options.borderWidth, 10);
 
-        this.element = element;
+        if (typeof element.length === 'number') {
+			this.element = [];
 
-        this.prepareElement(element);
+			Array.each(element, function (el) {
+				self.element.push(el);
+				self.prepareElement(el);
+			});
+		} else {
+			this.element = element;
+			this.prepareElement(element);
+		}
     },
 
     prepareElement: function (el) {
@@ -162,6 +172,14 @@ var RadialProgressBar = new Class({
     },
 
     start: function () {
-        this.setAnimation(this.element);
+		var self = this;
+
+		if (typeof this.element.length === 'number') {
+			Array.each(this.element, function (el) {
+				self.setAnimation(el);
+			});
+		} else {
+			this.setAnimation(this.element);
+		}
     }
 });

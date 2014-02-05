@@ -1,165 +1,174 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
+	<meta charset="utf-8">
 
-    <title>Radial progress bar</title>
+	<title>Radial progress bar</title>
 
-    <script src="//ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
-    <script src="RadialProgressBar.js"></script>
-    <script>
-    window.addEvent('domready', function () {
-        $$('.radial-progress-type-1').each(function (el) {
-            new RadialProgressBar(el, {
-                borderColor: '#4db5e4',
-                borderWidth: 10
-            });
-        });
-        $$('.radial-progress-type-2').each(function (el) {
-            new RadialProgressBar(el, {
-                borderWidth: 5,
-                elementSize: '60px',
-                overlayColor: '#333',
-                fontColor: '#fff',
-                animate: true
-            });
-        });
+	<script src="//ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
+	<script src="RadialProgressBar.js"></script>
+	<script>
+	window.addEvent('domready', function () {
+		$$('.radial-progress-type-1').each(function (el) {
+			new RadialProgressBar(el, {
+				borderColor: '#4db5e4',
+				borderWidth: 10
+			});
+		});
+		$$('.radial-progress-type-2').each(function (el) {
+			new RadialProgressBar(el, {
+				borderWidth: 5,
+				elementSize: '60px',
+				overlayColor: '#333',
+				fontColor: '#fff',
+				animate: true
+			});
+		});
 
-        $$('.radial-progress-type-3').each(function (el) {
-            new RadialProgressBar(el, {
-                borderWidth: 20,
-                elementSize: 100,
-                overlayColor: '#00ff1e',
-                borderColor: '#fff',
-                fontColor: '#fff',
-                animate: true,
-                animateText: true
-            });
-        });
+		var rpb = new RadialProgressBar($('triggered'), {
+			backgroundColor: '#fff',
+			overlayColor: '#fff',
+			borderColor: '#333',
+			fontColor: '#333',
+			animate: true,
+			animateText: true,
+			autoStart: false
+		});
 
-        var rpb = new RadialProgressBar($('triggered'), {
-            backgroundColor: '#fff',
-            overlayColor: '#fff',
-            borderColor: '#333',
-            fontColor: '#333',
-            animate: true,
-            animateText: true,
-            autoStart: false
-        });
+		$('startAnimation').addEvent('click', function (e) {
+			rpb.start();
+		});
 
-        $('startAnimation').addEvent('click', function (e) {
-            rpb.start();
-        });
-    });
-    </script>
+		var rpbGroup = new RadialProgressBar($$('.radial-progress-type-4'), {
+			borderWidth: 20,
+			elementSize: 100,
+			overlayColor: '#000',
+			borderColor: '#adedda',
+			fontColor: '#ccc',
+			animate: true,
+			animateText: true,
+			autoStart: false
+		});
 
-    <style>
-    @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
+		$('startGroupAnimation').addEvent('click', function (e) {
+			rpbGroup.start();
+		});
+	});
+	</script>
 
-    body {
-        background: #222;
-        width: 700px;
-        margin: 20px auto;
-        font-family: 'Open sans', sans-serif;
-        font-weight: 300;
-        text-align: center;
-    }
+	<style>
+	@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
 
-    .section {
-        margin-bottom: 40px;
-        float: left;
-        width: 100%;
-    }
+	body {
+		background: #222;
+		width: 700px;
+		margin: 20px auto;
+		font-family: 'Open sans', sans-serif;
+		font-weight: 300;
+		text-align: center;
+	}
 
-    .type-1 div,
-    .type-3 div {
-        margin: 0 15px;
-    }
+	.section {
+		margin-bottom: 40px;
+		float: left;
+		width: 100%;
+	}
 
-    .type-2 div {
-        margin: 0 35px;
-    }
+	.type-1 div,
+	.type-3 div {
+		margin: 0 15px;
+	}
 
-    pre {
-        text-align: left;
-        font-family: 'Open sans', sans-serif;
-        color: #fff;
-        border-top: 1px solid #fff;
-        padding-top: 1em;
-    }
+	.type-2 div {
+		margin: 0 35px;
+	}
 
-    .type-1 pre {
-        border-top: 0;
-        padding-top: 0;
-    }
-    </style>
+	pre {
+		text-align: left;
+		font-family: 'Open sans', sans-serif;
+		color: #fff;
+		border-top: 1px solid #fff;
+		padding-top: 1em;
+	}
+
+	.type-1 pre {
+		border-top: 0;
+		padding-top: 0;
+	}
+	</style>
 </head>
 <body>
-    <div class="section type-1">
-        <pre>
+	<div class="section type-1">
+		<pre>
 new RadialProgressBar(el, {
-    borderColor: '#4db5e4',
-    borderWidth: 10
+	borderColor: '#4db5e4',
+	borderWidth: 10
 });
-        </pre>
-        <div class="radial-progress-type-1" data-progress="0%"></div>
-        <div class="radial-progress-type-1" data-progress="25%"></div>
-        <div class="radial-progress-type-1" data-progress="50%"></div>
-        <div class="radial-progress-type-1" data-progress="75%"></div>
-        <div class="radial-progress-type-1" data-progress="100%"></div>
-    </div>
-    <div class="section type-2">
-        <pre>
+		</pre>
+		<div class="radial-progress-type-1" data-progress="0%"></div>
+		<div class="radial-progress-type-1" data-progress="25%"></div>
+		<div class="radial-progress-type-1" data-progress="50%"></div>
+		<div class="radial-progress-type-1" data-progress="75%"></div>
+		<div class="radial-progress-type-1" data-progress="100%"></div>
+	</div>
+	<div class="section type-2">
+		<pre>
 new RadialProgressBar(el, {
-    borderWidth: 5,
-    elementSize: '60px',
-    overlayColor: '#333',
-    fontColor: '#fff',
-    animate: true
+	borderWidth: 5,
+	elementSize: '60px',
+	overlayColor: '#333',
+	fontColor: '#fff',
+	animate: true
 });
-        </pre>
-        <div class="radial-progress-type-2" data-progress="0%"></div>
-        <div class="radial-progress-type-2" data-progress="20%"></div>
-        <div class="radial-progress-type-2" data-progress="40%"></div>
-        <div class="radial-progress-type-2" data-progress="60%"></div>
-        <div class="radial-progress-type-2" data-progress="80%"></div>
-    </div>
-    <div class="section type-3">
-        <pre>
-new RadialProgressBar(el, {
-    borderWidth: 20,
-    elementSize: 100,
-    overlayColor: '#00ff1e',
-    borderColor: '#fff',
-    fontColor: '#fff',
-    animate: true,
-    animateText: true
-});
-        </pre>
-        <div class="radial-progress-type-3" data-progress="0%"></div>
-        <div class="radial-progress-type-3" data-progress="16%"></div>
-        <div class="radial-progress-type-3" data-progress="42%"></div>
-        <div class="radial-progress-type-3" data-progress="69%"></div>
-        <div class="radial-progress-type-3" data-progress="83%"></div>
-    </div>
-    <div class="section type-4">
-        <pre>
+		</pre>
+		<div class="radial-progress-type-2" data-progress="0%"></div>
+		<div class="radial-progress-type-2" data-progress="20%"></div>
+		<div class="radial-progress-type-2" data-progress="40%"></div>
+		<div class="radial-progress-type-2" data-progress="60%"></div>
+		<div class="radial-progress-type-2" data-progress="80%"></div>
+	</div>
+	<div class="section type-3">
+		<pre>
 var rpb = new RadialProgressBar($('triggered'), {
-    backgroundColor: '#fff',
-    overlayColor: '#fff',
-    borderColor: '#333',
-    fontColor: '#333',
-    animate: true,
-    animateText: true,
-    autoStart: false
+	backgroundColor: '#fff',
+	overlayColor: '#fff',
+	borderColor: '#333',
+	fontColor: '#333',
+	animate: true,
+	animateText: true,
+	autoStart: false
 });
 
 $('startAnimation').addEvent('click', function (e) {
-    rpb.start();
+	rpb.start();
 });
-        </pre>
-        <button id="startAnimation">Start animation</button>
-        <div id="triggered" data-progress="55%"></div>
-    </div>
+		</pre>
+		<button id="startAnimation">Start animation</button>
+		<div id="triggered" data-progress="55%"></div>
+	</div>
+		<div class="section type-4">
+		<pre>
+var rpbGroup = new RadialProgressBar($$('.radial-progress-type-4'), {
+	borderWidth: 20,
+	elementSize: 100,
+	overlayColor: '#f5edda',
+	borderColor: '#fff',
+	fontColor: '#fff',
+	animate: true,
+	animateText: true,
+	autoStart: false
+});
+
+$('startGroupAnimation').addEvent('click', function (e) {
+	rpbGroup.start();
+});
+		</pre>
+		<button id="startGroupAnimation">Start group animation</button>
+		<div class="radial-progress-type-4" data-progress="0%"></div>
+		<div class="radial-progress-type-4" data-progress="16%"></div>
+		<div class="radial-progress-type-4" data-progress="42%"></div>
+		<div class="radial-progress-type-4" data-progress="69%"></div>
+		<div class="radial-progress-type-4" data-progress="83%"></div>
+	</div>
 </body>
 </html>
