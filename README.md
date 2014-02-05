@@ -15,12 +15,25 @@ Initialization
 
 ```html
 <div id="element" data-progress="83%"></div>
-````
+```
 
 ```javascript
 var element = $('element');
 
 new RadialProgressBar(element[, options]);
+```
+
+It is also possible to initiate the class on an array of elements like so:
+
+```html
+<div class="radial-element" data-progress="5%"></div>
+<div class="radial-element" data-progress="37%"></div>
+```
+
+```javascript
+var elements = $$('.radial-element');
+
+new RadialProgressBar(elements[, options]);
 ```
 
 Options
@@ -75,6 +88,12 @@ You need to assign the initialization of the class to a variable, and fire the .
 
 Example:
 
+```html
+<div id="element" data-progress="47%"></div>
+
+<button id="button">Start animation</button>
+```
+
 ```javascript
 var radialProgress = new RadialProgressBar(element, {
     autoStart: false
@@ -84,6 +103,24 @@ $('button').addEvent('click', function () {
     radialProgress.start();
 });
 ```
+
+Or with a group:
+
+```html
+<div class="radial-element" data-progress="47%"></div>
+<div class="radial-element" data-progress="87%"></div>
+
+<button id="button">Start animation</button>
+```
+
+```javascript
+var radialProgressGroup = new RadialProgressBar($$('.elements'), {
+	autoStart: false
+});
+
+$('button').addEvent('click', function () {
+	radialProgressGroup.start();
+});
 
 Links
 -----
