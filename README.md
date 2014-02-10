@@ -121,6 +121,7 @@ var radialProgressGroup = new RadialProgressBar($$('.elements'), {
 $('button').addEvent('click', function () {
 	radialProgressGroup.start();
 });
+```
 
 Links
 -----
