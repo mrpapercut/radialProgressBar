@@ -53,6 +53,22 @@
 		$('startGroupAnimation').addEvent('click', function (e) {
 			rpbGroup.start();
 		});
+
+		new RadialProgressBar($('interval'), {
+			backgroundColor: '#4db5e4',
+			borderColor: '#fff',
+			borderWidth: '15px',
+			fontColor: '#fff',
+			overlayColor: '#4db5e4',
+			animateText: true,
+			watch: true
+		});
+
+		$('startInterval').addEvent('click', function (e) {
+			window.setInterval(function () {
+				$('interval').set('data-progress', parseInt($('interval').get('data-progress'), 10) + 1 + '%');
+			}, 250);
+		});
 	});
 	</script>
 
@@ -146,7 +162,7 @@ $('startAnimation').addEvent('click', function (e) {
 		<button id="startAnimation">Start animation</button>
 		<div id="triggered" data-progress="55%"></div>
 	</div>
-		<div class="section type-4">
+	<div class="section type-4">
 		<pre>
 var rpbGroup = new RadialProgressBar($$('.radial-progress-type-4'), {
 	borderWidth: 20,
@@ -169,6 +185,28 @@ $('startGroupAnimation').addEvent('click', function (e) {
 		<div class="radial-progress-type-4" data-progress="42%"></div>
 		<div class="radial-progress-type-4" data-progress="69%"></div>
 		<div class="radial-progress-type-4" data-progress="83%"></div>
+	</div>
+	<div class="section type-5">
+		<pre>
+new RadialProgressBar($('interval'), {
+	backgroundColor: '#4db5e4',
+	borderColor: '#fff',
+	borderWidth: '15px',
+	fontColor: '#fff',
+	overlayColor: '#4db5e4',
+	animateText: true,
+	watch: true
+});
+
+$('startInterval').addEvent('click', function (e) {
+	// This adds 1% to the progress, every 250ms
+	window.setInterval(function () {
+		$('interval').set('data-progress', parseInt($('interval').get('data-progress'), 10) + 1 + '%');
+	}, 250);
+});
+		</pre>
+		<button id="startInterval">Start interval</button>
+		<div id="interval" data-progress="0%"></div>
 	</div>
 </body>
 </html>

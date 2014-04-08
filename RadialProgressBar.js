@@ -14,7 +14,10 @@ var RadialProgressBar = new Class({
         animationSpeed: 1000,
         showText: true,
         animateText: false,
-        autoStart: true
+        autoStart: true,
+		watch: false,
+		watchInterval: 200,
+		stopWatchAt100: true
     },
 
     initialize: function (element, options) {
@@ -73,6 +76,10 @@ var RadialProgressBar = new Class({
             }
         });
 
+		if (this.options.watch) {
+			this.watch(el);
+		}
+
         if (!this.options.animate) {
             this.setProgress(el);
         } else if (this.options.autoStart) {
@@ -99,18 +106,18 @@ var RadialProgressBar = new Class({
         }
     },
 
-    setAnimation: function (el) {
+    setAnimation: function (el, startAt) {
         var progress = parseInt(el.get('data-progress'), 10),
             deg = progress <= 50 ? parseInt(360 * (progress / 100) + 90, 10) : parseInt(360 * (progress / 100) - 270, 10),
             steps = 360 * (progress / 100),
             speedPerStep = this.options.animationSpeed / steps,
             animateText = this.options.animateText,
             interval,
-            i = 0,
+            i = startAt <= 50 ? parseInt(360 * (startAt / 100), 10) : parseInt(360 * (startAt / 100), 10) || 0,
             j,
             self = this;
 
-        if (progress <= 50) {
+		if (progress <= 50) {
             interval = window.setInterval(function () {
                 j = i + 90;
 
@@ -181,5 +188,24 @@ var RadialProgressBar = new Class({
 		} else {
 			this.setAnimation(this.element);
 		}
-    }
+    },
+
+	watch: function (el) {
+		var self = this;
+
+		this.startPos = parseInt(el.get('data-progress'), 10);
+
+		this.watchInterval = window.setInterval(function () {
+			var curPos = parseInt(el.get('data-progress'), 10);
+
+			if (curPos !== self.startPos) {
+				self.setAnimation(el, self.startPos);
+				self.startPos = curPos;
+			}
+
+			if (self.options.stopWatchAt100 && curPos >= 100) {
+				window.clearInterval(self.watchInterval);
+			}
+		}, this.options.watchInterval);
+	}
 });
