@@ -77,6 +77,9 @@ new RadialProgressBar(element, {
 
     // Turn automatic start of animation on/off. See below for details
     autoStart: true
+
+	// Watch the data-progress value of the element for changes, and adjust accordingly
+	watch: false
 });
 ```
 
