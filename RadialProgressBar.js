@@ -15,30 +15,30 @@ var RadialProgressBar = new Class({
         showText: true,
         animateText: false,
         autoStart: true,
-		watch: false,
-		watchInterval: 200,
-		stopWatchAt100: true
+        watch: false,
+        watchInterval: 200,
+        stopWatchAt100: true
     },
 
     initialize: function (element, options) {
-		var self = this;
+        var self = this;
 
         this.setOptions(options);
 
-		this.options.elementSize = parseInt(this.options.elementSize, 10);
-        this.options.borderWidth = parseInt(this.options.borderWidth, 10);
+        this.options.elementSize = parseInt(this.options.elementSize, 10);
+            this.options.borderWidth = parseInt(this.options.borderWidth, 10);
 
-        if (typeof element.length === 'number') {
-			this.element = [];
+            if (typeof element.length === 'number') {
+            this.element = [];
 
-			Array.each(element, function (el) {
-				self.element.push(el);
-				self.prepareElement(el);
-			});
-		} else {
-			this.element = element;
-			this.prepareElement(element);
-		}
+            Array.each(element, function (el) {
+                self.element.push(el);
+                self.prepareElement(el);
+            });
+        } else {
+            this.element = element;
+            this.prepareElement(element);
+        }
     },
 
     prepareElement: function (el) {
@@ -76,9 +76,9 @@ var RadialProgressBar = new Class({
             }
         });
 
-		if (this.options.watch) {
-			this.watch(el);
-		}
+        if (this.options.watch) {
+            this.watch(el);
+        }
 
         if (!this.options.animate) {
             this.setProgress(el);
@@ -117,7 +117,7 @@ var RadialProgressBar = new Class({
             j,
             self = this;
 
-		if (progress <= 50) {
+        if (progress <= 50) {
             interval = window.setInterval(function () {
                 j = i + 90;
 
@@ -179,33 +179,33 @@ var RadialProgressBar = new Class({
     },
 
     start: function () {
-		var self = this;
+        var self = this;
 
-		if (typeof this.element.length === 'number') {
-			Array.each(this.element, function (el) {
-				self.setAnimation(el);
-			});
-		} else {
-			this.setAnimation(this.element);
-		}
+        if (typeof this.element.length === 'number') {
+            Array.each(this.element, function (el) {
+                self.setAnimation(el);
+            });
+        } else {
+            this.setAnimation(this.element);
+        }
     },
 
-	watch: function (el) {
-		var self = this;
+    watch: function (el) {
+        var self = this;
 
-		this.startPos = parseInt(el.get('data-progress'), 10);
+        this.startPos = parseInt(el.get('data-progress'), 10);
 
-		this.watchInterval = window.setInterval(function () {
-			var curPos = parseInt(el.get('data-progress'), 10);
+        this.watchInterval = window.setInterval(function () {
+            var curPos = parseInt(el.get('data-progress'), 10);
 
-			if (curPos !== self.startPos) {
-				self.setAnimation(el, self.startPos);
-				self.startPos = curPos;
-			}
+            if (curPos !== self.startPos) {
+                self.setAnimation(el, self.startPos);
+                self.startPos = curPos;
+            }
 
-			if (self.options.stopWatchAt100 && curPos >= 100) {
-				window.clearInterval(self.watchInterval);
-			}
-		}, this.options.watchInterval);
-	}
+            if (self.options.stopWatchAt100 && curPos >= 100) {
+                window.clearInterval(self.watchInterval);
+            }
+        }, this.options.watchInterval);
+    }
 });
