@@ -26,9 +26,9 @@ var RadialProgressBar = new Class({
         this.setOptions(options);
 
         this.options.elementSize = parseInt(this.options.elementSize, 10);
-            this.options.borderWidth = parseInt(this.options.borderWidth, 10);
+        this.options.borderWidth = parseInt(this.options.borderWidth, 10);
 
-            if (typeof element.length === 'number') {
+        if (typeof element.length === 'number') {
             this.element = [];
 
             Array.each(element, function (el) {
@@ -202,6 +202,10 @@ var RadialProgressBar = new Class({
                 self.setAnimation(el, self.startPos);
                 self.startPos = curPos;
             }
+
+			if (self.options.showText && !self.options.animateText) {
+				self.element.getElements('.overlay')[0].set('html', curPos + '%');
+			}
 
             if (self.options.stopWatchAt100 && curPos >= 100) {
                 window.clearInterval(self.watchInterval);
