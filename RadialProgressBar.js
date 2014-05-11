@@ -42,9 +42,13 @@ var RadialProgressBar = new Class({
     },
 
     prepareElement: function (el) {
-        var progress = el.get('data-progress'),
+        var progress = this.options.initialProgress = el.get('data-progress'),
             overlay,
             elSize = this.options.elementSize - (this.options.borderWidth * 2) + 'px';
+
+        if (el.getElement('.overlay')) {
+            el.innerHTML = '';
+        }
 
         overlay = new Element('div', {
             'class': 'overlay',
@@ -203,13 +207,18 @@ var RadialProgressBar = new Class({
                 self.startPos = curPos;
             }
 
-			if (self.options.showText && !self.options.animateText) {
-				self.element.getElements('.overlay')[0].set('html', curPos + '%');
-			}
+            if (self.options.showText && !self.options.animateText) {
+                self.element.getElements('.overlay')[0].set('html', curPos + '%');
+            }
 
             if (self.options.stopWatchAt100 && curPos >= 100) {
                 window.clearInterval(self.watchInterval);
             }
         }, this.options.watchInterval);
+    },
+
+    reset: function () {
+        this.element.set('data-progress', this.options.initialProgress);
+        this.prepareElement(this.element);
     }
 });

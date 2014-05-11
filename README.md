@@ -131,6 +131,7 @@ Watch
 
 If you set the option 'watch' to true, the class will pay attention to changes in the data-progress attribute. This is mostly useful as a real progress bar, counting from 0% to 100%. In the following example we'll be using setInterval to increment the progress, but the data-progress value could be changed by anything.
 Please note: going over 100% leads to problems, because it's impossible to use more than 360 degrees in a circle. Also, counting backwards might lead to inconsistent behaviour. The point of this feature is incrementing values up to 100%.
+**Please note 2: This option does not work when initialized on an array of elements**
 
 Example:
 ```html
@@ -146,6 +147,33 @@ window.setInterval(function () {
 	var rpb = $('radial-element');
 	rpb.set('data-progress', parseInt(rpb.get('data-progress'), 10) + 1 + '%');
 }, 250);
+```
+
+Reset
+-----
+
+Calling .reset() on the initialized class will reset the progress-value to its initial value.
+This is useful because
+
+Example:
+```html
+<div id="radial-element" data-progress="10%"></div>
+```
+
+```javascript
+var rpb = new RadialProgressBar($('radial-element'));
+
+/*
+ * Code here to increment to 60%
+ */
+
+console.log($('radial-element').get('data-progress'));
+// > '60%'
+
+rpb.reset();
+
+console.log($('radial-element').get('data-progress'));
+// > '10%'
 ```
 
 Links
