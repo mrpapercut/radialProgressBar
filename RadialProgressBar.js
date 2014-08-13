@@ -117,7 +117,7 @@ var RadialProgressBar = new Class({
             speedPerStep = this.options.animationSpeed / steps,
             animateText = this.options.animateText,
             interval,
-            i = startAt <= 50 ? parseInt(360 * (startAt / 100), 10) : parseInt(360 * (startAt / 100), 10) || 0,
+            i = parseInt(360 * (startAt / 100), 10),
             j,
             self = this;
 
@@ -130,7 +130,7 @@ var RadialProgressBar = new Class({
                 });
 
                 if (animateText) {
-                    el.getElements('.overlay')[0].set('html', Math.ceil(i / 3.6) + '%');
+                    el.getElements('.overlay')[0].set('html', Math.round(i / 3.6) + '%');
                 }
 
                 if (i >= deg - 90) {
@@ -156,7 +156,7 @@ var RadialProgressBar = new Class({
                 }
 
                 if (animateText) {
-                    el.getElements('.overlay')[0].set('html', Math.ceil(i / 3.6) + '%');
+                    el.getElements('.overlay')[0].set('html', Math.round(i / 3.6) + '%');
                 }
 
                 if (i >= deg + 270) {
