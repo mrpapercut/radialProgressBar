@@ -116,12 +116,13 @@ var RadialProgressBar = new Class({
             steps = 360 * (progress / 100),
             speedPerStep = this.options.animationSpeed / steps,
             animateText = this.options.animateText,
-			startAt = startAt || 0,
             i = parseInt(360 * (startAt / 100), 10),
             j,
             self = this;
 
-		if (this.animateInterval) window.clearInterval(this.animateInterval);
+		startAt = startAt || 0;
+
+        if (this.animateInterval) window.clearInterval(this.animateInterval);
 
         if (progress <= 50) {
             this.animateInterval = window.setInterval(function () {
