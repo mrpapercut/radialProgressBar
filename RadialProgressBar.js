@@ -116,13 +116,15 @@ var RadialProgressBar = new Class({
             steps = 360 * (progress / 100),
             speedPerStep = this.options.animationSpeed / steps,
             animateText = this.options.animateText,
-            interval,
+			startAt = startAt || 0,
             i = parseInt(360 * (startAt / 100), 10),
             j,
             self = this;
 
+		if (this.animateInterval) window.clearInterval(this.animateInterval);
+
         if (progress <= 50) {
-            interval = window.setInterval(function () {
+            this.animateInterval = window.setInterval(function () {
                 j = i + 90;
 
                 el.setStyles({
@@ -134,13 +136,13 @@ var RadialProgressBar = new Class({
                 }
 
                 if (i >= deg - 90) {
-                    window.clearInterval(interval);
+                    window.clearInterval(self.animateInterval);
                 }
 
                 i++;
             }, speedPerStep);
         } else {
-            interval = window.setInterval(function () {
+            this.animateInterval = window.setInterval(function () {
                 if (i < 180) {
                     j = i + 90;
 
@@ -160,7 +162,7 @@ var RadialProgressBar = new Class({
                 }
 
                 if (i >= deg + 270) {
-                    window.clearInterval(interval);
+                    window.clearInterval(self.animateInterval);
                 }
 
                 i++;
