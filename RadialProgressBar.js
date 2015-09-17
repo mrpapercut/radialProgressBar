@@ -28,6 +28,8 @@ var RadialProgressBar = new Class({
         this.options.elementSize = parseInt(this.options.elementSize, 10);
         this.options.borderWidth = parseInt(this.options.borderWidth, 10);
 
+		this.animateInterval = [];
+
         if (typeof element.length === 'number') {
             this.element = [];
 
@@ -111,7 +113,10 @@ var RadialProgressBar = new Class({
     },
 
     setAnimation: function (el, startAt) {
-        var progress = parseInt(el.get('data-progress'), 10),
+		startAt = startAt || 0;
+
+        var id = el.get('data-rpb-id') || btoa(JSON.encode(el.getPosition()) + +new Date),
+			progress = parseInt(el.get('data-progress'), 10),
             deg = progress <= 50 ? parseInt(360 * (progress / 100) + 90, 10) : parseInt(360 * (progress / 100) - 270, 10),
             steps = 360 * (progress / 100),
             speedPerStep = this.options.animationSpeed / steps,
@@ -120,12 +125,12 @@ var RadialProgressBar = new Class({
             j,
             self = this;
 
-		startAt = startAt || 0;
+		el.set('data-rpb-id', id);
 
-        if (this.animateInterval) window.clearInterval(this.animateInterval);
+		if (this.animateInterval[id]) window.clearInterval(this.animateInterval[id]);
 
         if (progress <= 50) {
-            this.animateInterval = window.setInterval(function () {
+            this.animateInterval[id] = window.setInterval(function () {
                 j = i + 90;
 
                 el.setStyles({
@@ -137,13 +142,13 @@ var RadialProgressBar = new Class({
                 }
 
                 if (i >= deg - 90) {
-                    window.clearInterval(self.animateInterval);
+                    window.clearInterval(self.animateInterval[id]);
                 }
 
                 i++;
             }, speedPerStep);
         } else {
-            this.animateInterval = window.setInterval(function () {
+            this.animateInterval[id] = window.setInterval(function () {
                 if (i < 180) {
                     j = i + 90;
 
@@ -163,7 +168,7 @@ var RadialProgressBar = new Class({
                 }
 
                 if (i >= deg + 270) {
-                    window.clearInterval(self.animateInterval);
+                    window.clearInterval(self.animateInterval[id]);
                 }
 
                 i++;
